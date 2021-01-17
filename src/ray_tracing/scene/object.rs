@@ -3,9 +3,15 @@ use crate::ray_tracing::Ray;
 use crate::ray_tracing::scene::Collision;
 
 #[derive(Clone, Debug)]
-struct Sphere {
+pub struct Sphere {
     center: Vec3<f64>,
     radius: f64,
+}
+
+impl Sphere {
+    pub fn new(center: Vec3<f64>, radius: f64) -> Self {
+        Self { center, radius }
+    }
 }
 
 impl Collision for Sphere {
