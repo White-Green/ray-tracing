@@ -1,4 +1,11 @@
+use crate::geometry::{Vec3, NormalizedVec3};
+
 pub mod scene;
+
+struct Ray {
+    initial: Vec3<f64>,
+    direction: NormalizedVec3<f64>,
+}
 
 pub fn draw(buffer: &mut [u8], width: usize, height: usize) {
     for y in 0..height {

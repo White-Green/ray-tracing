@@ -4,7 +4,6 @@ use crate::ray_tracing::draw;
 
 pub mod ray_tracing;
 pub mod geometry;
-pub mod scene;
 
 fn main() {
     println!("Hello, world!");
