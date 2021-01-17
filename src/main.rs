@@ -1,5 +1,11 @@
 use image::ColorType;
 
+use crate::ray_tracing::draw;
+
+pub mod ray_tracing;
+pub mod geometry;
+pub mod scene;
+
 fn main() {
     println!("Hello, world!");
 
@@ -13,20 +19,6 @@ fn main() {
     draw(&mut buffer, width, height);
 
     write_image(&buffer, width as u32, height as u32);
-}
-
-fn draw(buffer: &mut [u8], width: usize, height: usize) {
-    for y in 0..height {
-        for x in 0..width {
-            let yy = y as f64 - (height / 2) as f64;
-            let xx = x as f64 - (width / 2) as f64;
-            let radius = (width.min(height) / 2) as f64;
-            if xx * xx + yy * yy <= radius * radius {
-                buffer[(y * width + x) * 4] = 255;
-                buffer[(y * width + x) * 4 + 3] = 255;
-            }
-        }
-    }
 }
 
 fn write_image(data: &[u8], width: u32, height: u32) {
