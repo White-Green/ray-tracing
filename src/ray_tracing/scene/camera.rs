@@ -65,9 +65,9 @@ impl Camera {
         }
     }
 
-    pub fn create_ray(&self, x: usize, y: usize) -> Ray {
-        let x = x as f64 - (self.width / 2) as f64;
-        let y = y as f64 - (self.height / 2) as f64;
+    pub fn create_ray(&self, x: f64, y: f64) -> Ray {
+        let x = x - (self.width / 2) as f64;
+        let y = y - (self.height / 2) as f64;
         Ray {
             initial: self.position,
             direction: (self.direction_forward + self.direction_right * x * self.unit_per_pixel + self.direction_bottom * y * self.unit_per_pixel).normalize(),

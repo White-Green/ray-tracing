@@ -51,9 +51,9 @@ mod tests {
 
     #[test]
     fn sphere_collision_test() {
-        let sphere = Sphere::new(Vec3::new(0f64, 0f64, 0f64), 1.0, Material::SolidColor(Color { r: 0f64, g: 0f64, b: 0f64 }));
+        let sphere = Sphere::new(Vec3::new(0f64, 0f64, 0f64), 1.0, Material::Solid(Color { r: 0f64, g: 0f64, b: 0f64 }));
         let collision = sphere.collision(&Ray { initial: Vec3::new(2f64, 0f64, 0f64), direction: Vec3::new(-1f64, 0f64, 0f64).normalize() });
-        if let Some((x, normal)) = collision {
+        if let Some((x, normal, _)) = collision {
             let normal: Vec3<_> = normal.into();
             assert!((x - 1.0).abs() < 1e-3);
             assert!((normal.x() - 1.0).abs() < 1e-3);
@@ -64,7 +64,7 @@ mod tests {
         }
 
         let collision = sphere.collision(&Ray { initial: Vec3::new(0f64, 2f64, 0f64), direction: Vec3::new(0f64, -1f64, 0f64).normalize() });
-        if let Some((x, normal)) = collision {
+        if let Some((x, normal, _)) = collision {
             let normal: Vec3<_> = normal.into();
             assert!((x - 1.0).abs() < 1e-3);
             assert!((normal.x() - 0.0).abs() < 1e-3);
@@ -75,7 +75,7 @@ mod tests {
         }
 
         let collision = sphere.collision(&Ray { initial: Vec3::new(0f64, 0f64, 2f64), direction: Vec3::new(0f64, 0f64, -1f64).normalize() });
-        if let Some((x, normal)) = collision {
+        if let Some((x, normal, _)) = collision {
             let normal: Vec3<_> = normal.into();
             assert!((x - 1.0).abs() < 1e-3);
             assert!((normal.x() - 0.0).abs() < 1e-3);
@@ -86,9 +86,9 @@ mod tests {
         }
 
 
-        let sphere = Sphere::new(Vec3::new(2f64, 0f64, 0f64), 1.0, Material::SolidColor(Color { r: 0f64, g: 0f64, b: 0f64 }));
+        let sphere = Sphere::new(Vec3::new(2f64, 0f64, 0f64), 1.0, Material::Solid(Color { r: 0f64, g: 0f64, b: 0f64 }));
         let collision = sphere.collision(&Ray { initial: Vec3::new(0f64, 0f64, 0f64), direction: Vec3::new(1f64, 0f64, 0f64).normalize() });
-        if let Some((x, normal)) = collision {
+        if let Some((x, normal, _)) = collision {
             let normal: Vec3<_> = normal.into();
             assert!((x - 1.0).abs() < 1e-3);
             assert!((normal.x() + 1.0).abs() < 1e-3);
@@ -98,9 +98,9 @@ mod tests {
             unreachable!()
         }
 
-        let sphere = Sphere::new(Vec3::new(0f64, 2f64, 0f64), 1.0, Material::SolidColor(Color { r: 0f64, g: 0f64, b: 0f64 }));
+        let sphere = Sphere::new(Vec3::new(0f64, 2f64, 0f64), 1.0, Material::Solid(Color { r: 0f64, g: 0f64, b: 0f64 }));
         let collision = sphere.collision(&Ray { initial: Vec3::new(0f64, 0f64, 0f64), direction: Vec3::new(0f64, 1f64, 0f64).normalize() });
-        if let Some((x, normal)) = collision {
+        if let Some((x, normal, _)) = collision {
             let normal: Vec3<_> = normal.into();
             assert!((x - 1.0).abs() < 1e-3);
             assert!((normal.x() - 0.0).abs() < 1e-3);
@@ -110,9 +110,9 @@ mod tests {
             unreachable!()
         }
 
-        let sphere = Sphere::new(Vec3::new(0f64, 0f64, 2f64), 1.0, Material::SolidColor(Color { r: 0f64, g: 0f64, b: 0f64 }));
+        let sphere = Sphere::new(Vec3::new(0f64, 0f64, 2f64), 1.0, Material::Solid(Color { r: 0f64, g: 0f64, b: 0f64 }));
         let collision = sphere.collision(&Ray { initial: Vec3::new(0f64, 0f64, 0f64), direction: Vec3::new(0f64, 0f64, 1f64).normalize() });
-        if let Some((x, normal)) = collision {
+        if let Some((x, normal, _)) = collision {
             let normal: Vec3<_> = normal.into();
             assert!((x - 1.0).abs() < 1e-3);
             assert!((normal.x() - 0.0).abs() < 1e-3);
@@ -122,9 +122,9 @@ mod tests {
             unreachable!()
         }
 
-        let sphere = Sphere::new(Vec3::new(0f64, 0f64, 0f64), 1.0, Material::SolidColor(Color { r: 0f64, g: 0f64, b: 0f64 }));
+        let sphere = Sphere::new(Vec3::new(0f64, 0f64, 0f64), 1.0, Material::Solid(Color { r: 0f64, g: 0f64, b: 0f64 }));
         let collision = sphere.collision(&Ray { initial: Vec3::new(0f64, 0f64, 0f64), direction: Vec3::new(1f64, 0f64, 0f64).normalize() });
-        if let Some((x, normal)) = collision {
+        if let Some((x, normal, _)) = collision {
             let normal: Vec3<_> = normal.into();
             assert!((x - 1.0).abs() < 1e-3);
             assert!((normal.x() - 1.0).abs() < 1e-3);

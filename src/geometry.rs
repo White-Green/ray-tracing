@@ -24,6 +24,15 @@ impl<V> Vec3<V> {
         self.x * rhs.x + self.y * rhs.y + self.z * rhs.z
     }
 
+    pub fn outer_product<Rhs: Clone, P: Sub<Output=P>>(self, rhs: Vec3<Rhs>) -> Vec3<P>
+        where V: Mul<Rhs, Output=P> + Clone {
+        Vec3::new(
+            self.y.clone() * rhs.z.clone() - self.z.clone() * rhs.y.clone(),
+            self.z * rhs.x.clone() - self.x.clone() * rhs.z,
+            self.x * rhs.y - self.y * rhs.x,
+        )
+    }
+
     pub fn squared_len<P: Add<Output=P>>(self) -> P
         where V: Mul<Output=P>, Self: Clone {
         self.clone().inner_product(self)
@@ -60,6 +69,12 @@ impl<V> From<NormalizedVec3<V>> for Vec3<V> {
             y: value.y,
             z: value.z,
         }
+    }
+}
+
+impl<V> NormalizedVec3<V> {
+    pub fn vec(self) -> Vec3<V> {
+        Vec3::new(self.x, self.y, self.z)
     }
 }
 
@@ -130,6 +145,11 @@ mod tests {
     #[test]
     fn vec3_inner_product_test() {
         assert_eq!(Vec3::new(1, 2, 3).inner_product(Vec3::new(5, 4, 6)), 5 + 8 + 18);
+    }
+
+    #[test]
+    fn vec3_outer_product_test() {
+        assert_eq!(Vec3::new(1, 2, 3).outer_product(Vec3::new(5, 4, 7)), Vec3::new(2, 8, -6));
     }
 
     #[test]
